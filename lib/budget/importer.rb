@@ -1,4 +1,5 @@
 require 'csv'
+require 'securerandom'
 
 module Budget
   class Importer
@@ -13,7 +14,7 @@ module Budget
     def import_transactions
       file = File.open(TRANS_FILE, 'a')
       @data.each do |line|
-        file.puts("#{line[1]},#{line[4]},#{line[5]}")
+        file.puts("#{SecureRandom.uuid},#{line[1]},#{line[4]},#{line[5]}")
       end
     end
   end
